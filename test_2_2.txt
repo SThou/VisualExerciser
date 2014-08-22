@@ -1,10 +1,3 @@
 This is our project visualExerciser created by Sovisit Thou and Harish Kothandapani
 
 A great beginning to a great career.
-
-<<<<<<< HEAD
-
-This is ST edit 4
-=======
-Branch edit
->>>>>>> d76ec9e5d8c087a21f2ef9e9ec5d5218e1d27d29
