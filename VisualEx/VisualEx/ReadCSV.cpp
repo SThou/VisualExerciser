@@ -9,14 +9,96 @@
 #include <cstdlib> // for exit functions
 #include <iostream>
 #include <fstream> // stream class to both read and write from/to files
-#include <string>
+#include <cstring>
 #include <cstdio>
+#include <stdio.h>
 
 using namespace std;
 
-int main()
+/*record of one weight*/
+
+struct record{
+
+	//char userweighthead[14] = "user weight"; // heading for user weight
+	int userweight;
+	char exercise[25]; // individual exercise
+	int malenationalstats;
+};
+
+
+int main(void)
 {
 
+
+//fstream file("CSVStats.csv");
+
+// if (!file)
+// { cerr << " File Could Not Open" ;
+//   exit(1);
+// }
+
+
+
+FILE *fileptr; // pointer to file
+
+struct record testrecord = { 0, "", 0};
+
+cout<<"test:"<<testrecord.userweight<<endl;
+
+if ( ( fileptr = fopen( "CSVStats.csv", "rb") ) == NULL)
+{printf ("File could not be opened\n");
+}
+
+else {
+	 // Read from file
+	    while (!feof (fileptr))
+	     {
+	 //    string input;
+	  //   string charmatch = (",");
+
+	 //    file.seekg(0, file.end);
+	 //    file.seekg(0, file.beg);
+
+	  //   char *buffer = new char[328328];
+	 //    file.read(buffer, 328328);
+
+	  //   struct record *n= (struct record*)malloc(sizeof(struct record));
+
+	     fread(&testrecord,sizeof(struct record), 1, fileptr);
+	     // token test
+	 //    char *tokenptr;
+
+
+	 };
+	    fclose(fileptr);
+
+	    cout<<"test2\n"<<testrecord.exercise<<endl;
+
+	 //   cout<< testrecord.userweight<<endl;
+
+	   //  tokenptr = strtok(buffer, ",");
+
+	 //    while (tokenptr != NULL)
+	 //    {
+	 //   	 cout<<tokenptr<<endl;
+	  //  	 tokenptr = strtok(NULL, ","); // exit
+//
+
+
+
+	     }
+
+
+}
+
+
+
+
+
+/*
+int main()
+{
+// CSVStatsMod
     fstream file("CSVStats.csv");
 
     if (!file)
@@ -25,17 +107,12 @@ int main()
     }
 
 
-    int i = 0;
-    int c = 0;
-    int array [328328];
-
     // Read from file
     while (file)
      {
      string input;
-     string inputstring;
      string charmatch = (",");
-     getline(file, input);
+  //   getline(file, input);
 
 
 
@@ -44,12 +121,31 @@ int main()
   //   int length = file.tellg();
      file.seekg(0, file.beg);
 
-     char * buffer = new char[328328];
-
+     char *buffer = new char[328328];
+  //   string arraystring[200];
      file.read(buffer, 328328);
 
-     file.write("test", 11);
-  //   cout<<buffer<<endl;
+
+     // token test
+
+     char *tokenptr;
+
+     cout << "the individuals words: \n" <<endl;
+
+     tokenptr = strtok(buffer, ",");
+
+     while (tokenptr != NULL){
+    	 cout<<tokenptr<<endl;
+    //	 arraystring[1] = tokenptr;
+    //	 cout<< arraystring<<endl;
+     }
+
+   //  cout<<buffer<<endl; // us
+
+
+
+
+
 
     // char charwrite = 'ST';
    //   cout<< buffer[10]<<endl;
@@ -73,7 +169,7 @@ int main()
 
 */
 
-     } // end while loop
+    // } // end while loop
 
 /*
     FILE *file2;
@@ -83,9 +179,9 @@ int main()
     fputs ("TestST", file2);
     fclose (file2);
 
-*/
 
 
+ cout<< "file process complete" << "\n" << endl;
 
     return 0;
 
@@ -93,3 +189,4 @@ int main()
 
 }
 
+*/
