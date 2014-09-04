@@ -59,29 +59,28 @@ struct record testrecord; // make a blank struct
 	     char *tokenptr;
 	     tokenptr = strtok(buffer, ",");
 	     int x = 0;
-	     char value[200];
+	     char converted[200];
 	 while (tokenptr != NULL)
 	 {
+		  ss << tokenptr;
 
+ 	 if (x == 1)
+  	 {	ss >> converted;
+ 		 testrecord.exercise[0] = converted;}
 
-		//  cast char to string
-		// ss << tokenptr;
-	//	 ss >> converted;
-		 tokenptr = strtok(NULL, ","); // next token
+ 	 else if (x==3)
+	 {	ss >> converted;
+ 		 testrecord.exercise[1] = converted;}
 
-
- 	 if (x == 0)
-  	 {	testrecord.exercise[0] = converted;}
-
- 	 if (x==1)
-	 {testrecord.exercise[1] = converted;}
-
- 	 if (x==2)
-	 {testrecord.exercise[2] = converted;}
+ 	 else if (x==5)
+	 {	ss >> converted;
+ 		 testrecord.exercise[2] = converted;}
 
 	  x++;
-	  ss << tokenptr;
-	  ss >> converted;
+	  tokenptr = strtok(NULL, ","); // next token
+
+
+
 	 }
 
 	 cout<<"output: "<<testrecord.exercise[0]<<endl;
