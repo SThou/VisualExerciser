@@ -12,6 +12,7 @@
 #include <cstring>
 #include <cstdio>
 #include <stdio.h>
+#include <sstream>
 
 using namespace std;
 
@@ -20,76 +21,78 @@ using namespace std;
 struct record{
 
 	//char userweighthead[14] = "user weight"; // heading for user weight
-	int userweight;
-	char exercise[25]; // individual exercise
-	int malenationalstats;
+	string userweight;
+	string exercise[30]; // individual exercise
+	char malenationalstats;
 };
 
 
 int main(void)
 {
 
+stringstream ss;
+string converted;
+fstream file("CSVStats.csv");
 
-//fstream file("CSVStats.csv");
-
-// if (!file)
-// { cerr << " File Could Not Open" ;
-//   exit(1);
-// }
+ if (!file)
+ { cerr << " File Could Not Open" ;
+   exit(1);
+ }
 
 
 
-FILE *fileptr; // pointer to file
+struct record testrecord; // make a blank struct
 
-struct record testrecord = { 0, "", 0};
 
-cout<<"test:"<<testrecord.userweight<<endl;
-
-if ( ( fileptr = fopen( "CSVStats.csv", "rb") ) == NULL)
-{printf ("File could not be opened\n");
-}
-
-else {
-	 // Read from file
-	    while (!feof (fileptr))
+	    while (file)
 	     {
-	 //    string input;
-	  //   string charmatch = (",");
 
-	 //    file.seekg(0, file.end);
-	 //    file.seekg(0, file.beg);
 
-	  //   char *buffer = new char[328328];
-	 //    file.read(buffer, 328328);
+	     file.seekg(0, file.end);
+	     file.seekg(0, file.beg);
 
-	  //   struct record *n= (struct record*)malloc(sizeof(struct record));
+	     char *buffer = new char[328328];
+	     file.read(buffer, 328328);
 
-	     fread(&testrecord,sizeof(struct record), 1, fileptr);
+
 	     // token test
-	 //    char *tokenptr;
+	     char *tokenptr;
+	     tokenptr = strtok(buffer, ",");
+	     int x = 0;
+	     char value[200];
+	 while (tokenptr != NULL)
+	 {
 
 
-	 };
-	    fclose(fileptr);
+		//  cast char to string
+		// ss << tokenptr;
+	//	 ss >> converted;
+		 tokenptr = strtok(NULL, ","); // next token
 
-	    cout<<"test2\n"<<testrecord.exercise<<endl;
 
-	 //   cout<< testrecord.userweight<<endl;
+ 	 if (x == 0)
+  	 {	testrecord.exercise[0] = converted;}
 
-	   //  tokenptr = strtok(buffer, ",");
+ 	 if (x==1)
+	 {testrecord.exercise[1] = converted;}
 
-	 //    while (tokenptr != NULL)
-	 //    {
-	 //   	 cout<<tokenptr<<endl;
-	  //  	 tokenptr = strtok(NULL, ","); // exit
-//
+ 	 if (x==2)
+	 {testrecord.exercise[2] = converted;}
 
+	  x++;
+	  ss << tokenptr;
+	  ss >> converted;
+	 }
+
+	 cout<<"output: "<<testrecord.exercise[0]<<endl;
+	 cout<<"output: "<<testrecord.exercise[1]<<endl;
+	 cout<<"output: "<<testrecord.exercise[2]<<endl;
 
 
 	     }
-
-
 }
+
+
 
 
 
