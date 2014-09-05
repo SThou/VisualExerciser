@@ -60,13 +60,17 @@ struct record testrecord; // make a blank struct
 	     tokenptr = strtok(buffer, ",");
 	     int x = 0;
 	     char converted[200];
-
+	     char key[] = "Squat";
+	     char key2[] = "100";
 	 while (tokenptr != NULL)
 	 {
 		  ss << tokenptr;
  	 if (x >= 1)
-  	 {   ss >> converted;
+
+		{   ss >> converted;
+			if( strcmp(key, converted) == 0){
   	 	  testrecord.exercise[x] = converted;}
+		}
 
  	  x++;
 	  tokenptr = strtok(NULL, ","); // next token
