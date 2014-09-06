@@ -16,8 +16,22 @@
 
 using namespace std;
 
-/*record of one weight*/
+//double readdata(string *excelrecordptr);
 
+// functions for reading and writing to data structure
+void readdata(string **excelrecordptr){
+    int i = 1;
+    int row, col;
+    for(row = 0; row < 5; row++)
+        for(col =0; col<12; col++){
+            cout<<excelrecordptr[row][col]<<endl;
+            cout<<"test"<<endl;
+            i++;
+        }
+}
+
+
+/*record of one weight*/
 struct record{
 
 	string userweighthead; // heading for user weight
@@ -25,6 +39,7 @@ struct record{
 	string exercise[30]; // individual exercise
 	char malenationalstats;
 };
+
 
 
 int main(void)
@@ -46,6 +61,7 @@ fstream file("CSVStats.csv");
     string excelrecord[12][5]; // 12x5 record
     int row, col; // used to traverse
     
+    string *excelrecordptrs = &excelrecord[12][5];
     string fileparsed[200]; // parsed data to
 
 
@@ -68,31 +84,42 @@ fstream file("CSVStats.csv");
 	 {
 		  ss << tokenptr;
          if (x >= 1)
-		{   ss >> converted;
-            fileparsed[x] = converted;
-		}
+            {   ss >> converted;
+                fileparsed[x] = converted;
+            }
          x++;
          tokenptr = strtok(NULL, ","); // next token
-	 }
+	 } // end while parsing loop
          
-             // Read data into array
-             int i = 1;
-             for(row = 0; row < 5; row++)
-                 for(col =0; col<12; col++){
-                     excelrecord[col][row] = fileparsed[i];
-                     i++;
-                 } // end for loop
+ 
              
-       
-         
-
-            
 	     } // end while loop
+
+    int i = 1;
+    // Read data into array
+    while(i<100){
+    for(row = 0; row < 5; row++)
+        for(col =0; col<12; col++){
+            excelrecord[col][row] = fileparsed[i];
+          //  cout<<excelrecord[col][row]<<endl;
+            i++;
+        } // end for loop
+   // excelrecord[0][0] =  1;
+  //  cout<<excelrecord[0][0];
+          readdata(&excelrecordptrs);
+    }
+    
+    
+    
 	     } // end main
 
 
 
 
-// functions for reading and writing to data structure
+
+
+
+
+
 
 
