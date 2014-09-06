@@ -19,13 +19,12 @@ using namespace std;
 //double readdata(string *excelrecordptr);
 
 // functions for reading and writing to data structure
-void readdata(string **excelrecordptr){
+void readdata(string records[][5]){
     int i = 1;
     int row, col;
     for(row = 0; row < 5; row++)
         for(col =0; col<12; col++){
-            cout<<excelrecordptr[row][col]<<endl;
-            cout<<"test"<<endl;
+            cout<<records[row][col]<<endl;
             i++;
         }
 }
@@ -61,7 +60,7 @@ fstream file("CSVStats.csv");
     string excelrecord[12][5]; // 12x5 record
     int row, col; // used to traverse
     
-    string *excelrecordptrs = &excelrecord[12][5];
+   
     string fileparsed[200]; // parsed data to
 
 
@@ -100,13 +99,11 @@ fstream file("CSVStats.csv");
     while(i<100){
     for(row = 0; row < 5; row++)
         for(col =0; col<12; col++){
-            excelrecord[col][row] = fileparsed[i];
-          //  cout<<excelrecord[col][row]<<endl;
+            excelrecord[row][col] = fileparsed[i];
             i++;
         } // end for loop
-   // excelrecord[0][0] =  1;
-  //  cout<<excelrecord[0][0];
-          readdata(&excelrecordptrs);
+        
+          readdata(excelrecord);
     }
     
     
