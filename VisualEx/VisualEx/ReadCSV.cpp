@@ -20,7 +20,7 @@ using namespace std;
 
 struct record{
 
-	//char userweighthead[14] = "user weight"; // heading for user weight
+	string userweighthead; // heading for user weight
 	string userweight;
 	string exercise[30]; // individual exercise
 	char malenationalstats;
@@ -30,6 +30,9 @@ struct record{
 int main(void)
 {
 
+    
+    
+// Begin reading data from file to parsing to data structure
 stringstream ss;
 string converted;
 fstream file("CSVStats.csv");
@@ -39,15 +42,15 @@ fstream file("CSVStats.csv");
    exit(1);
  }
 
-
-
-struct record testrecord; // make a blank struct
+// represent dataset as two dimensional array to be read into
+    string excelrecord[12][5]; // 12x5 record
+    int row, col; // used to traverse
+    
+    string fileparsed[200]; // parsed data to
 
 
 	    while (file)
 	     {
-
-
 	     file.seekg(0, file.end);
 	     file.seekg(0, file.beg);
 
@@ -55,36 +58,41 @@ struct record testrecord; // make a blank struct
 	     file.read(buffer, 328328);
 
 
-	     // token test
+	     // token setup
 	     char *tokenptr;
 	     tokenptr = strtok(buffer, ",");
-	     int x = 0;
 	     char converted[200];
-	     char key[] = "Squat";
-	     char key2[] = "100";
-	 while (tokenptr != NULL)
+	   
+         int x = 0;
+	 while (tokenptr != NULL) // parse token and convert data into strings
 	 {
 		  ss << tokenptr;
- 	 if (x >= 1)
-
+         if (x >= 1)
 		{   ss >> converted;
-			if( strcmp(key, converted) == 0){
-  	 	  testrecord.exercise[x] = converted;}
+            fileparsed[x] = converted;
 		}
-
- 	  x++;
-	  tokenptr = strtok(NULL, ","); // next token
-
-
-
+         x++;
+         tokenptr = strtok(NULL, ","); // next token
 	 }
-	 int i = 1;
-	 while (i<10){
-	 cout<<"output: "<<testrecord.exercise[i]<<endl;
-	 i++;}
+         
+             // Read data into array
+             int i = 1;
+             for(row = 0; row < 5; row++)
+                 for(col =0; col<12; col++){
+                     excelrecord[col][row] = fileparsed[i];
+                     i++;
+                 } // end for loop
+             
+       
+         
+
+            
+	     } // end while loop
+	     } // end main
 
 
 
-	     }
-	     }
+
+// functions for reading and writing to data structure
+
 
