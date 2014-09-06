@@ -10,121 +10,147 @@
 #include <iostream>
 #include <fstream> // stream class to both read and write from/to files
 #include <cstring>
-#include <string>
 #include <cstdio>
 #include <stdio.h>
 #include <sstream>
 
 using namespace std;
 
-/*record of one weight*/
+//double readdata(string *excelrecordptr);
 
+// functions for reading and writing to data structure
+void readdata(string records[][5], int column){
+    int colcount = column; //set to num columns in csv file
+    int row, col;
+    for(row = 0; row < 12; row++)
+        for(col = 0; col<5; col++){
+            cout<<records[row][col] << " ";
+            colcount--;
+            if(colcount == 0)
+            {
+                cout << endl;
+                colcount = column; //set to number of columns in csv file
+            }
+        }
+        cout << endl;
+}
+
+
+//record of one weight
 struct record{
 
-	//char userweighthead[14] = "user weight"; // heading for user weight
+	string userweighthead; // heading for user weight
 	string userweight;
 	string exercise[30]; // individual exercise
 	char malenationalstats;
 };
 
-bool isInt(char* str) //check to see whether tokenptr is an int or not
-{
-string emptystr = " ";
-string firstchar;
-string tempstr;
-string newstr;
-char temp[20];
 
-tempstr = str;
-firstchar = tempstr.at(0);
-
-//check to see if tokenptr first char is a space, weird chars :(
-if(firstchar == emptystr)
-{
-    for(int i=1; i < strlen(str); i++) //strlen might be a problem
-    {
-        temp[i] = str[i];
-    }
-    newstr = temp;
-}
-else
-    newstr = str;
-cout << newstr  << endl; //outputting newstr, getting weird chars
-
-if (newstr.empty() || (!isdigit(newstr[0])))
-    return false;
-
-char *retptr;
-strtol(newstr.c_str(), &retptr, 10); //function to convert a cstring to an integer form
-//in this manner, if retptr is zero after running this function, the input string is not an integer value
-return (*retptr==0);
-}
 
 int main(void)
 {
-
+// Begin reading data from file to parsing to data structure
 stringstream ss;
 string converted;
+fstream filecomma("CSVStats.csv"); //didnt know how to use the same filestream again lol
+fstream filerow("CSVStats.csv"); // " "
 fstream file("CSVStats.csv");
 
  if (!file)
  { cerr << " File Could Not Open" ;
    exit(1);
  }
+ if (!filecomma)
+ {
+     cerr << " File Coult Not Open" ;
+     exit(1);
+ }
+ if (!filerow)
+ {
+     cerr << " File Coult Not Open" ;
+     exit(1);
+ }
+
+// represent dataset as two dimensional array to be read into
+    string excelrecord[12][5]; // 12x5 record
+    int row, col; // used to traverse
 
 
+    string fileparsed[200]; // parsed data to
+    int commacount = 0;
+    int rowcount = 0;
+    int columncount;
+    string datacount;
 
-struct record testrecord; // make a blank struct
 
+//HK: counting number of rows and columns
+string line; //arbitrary, just need for getline
+string token; //separate string for nested getline
+	while (getline(filecomma,line))
+	{
+		stringstream s(line);
+		while (getline(s,token,','))
+		{
+			commacount++;
+		}
+	}
+
+	while (getline(filerow,line))
+	{
+		stringstream s(line);
+		while (getline(s,token,'\n'))
+		{
+			rowcount++;
+		}
+	}
 
 	    while (file)
 	     {
-
-
 	     file.seekg(0, file.end);
+	     int flength = file.tellg(); //HK: determine exact size of file
 	     file.seekg(0, file.beg);
 
-	     char *buffer = new char[328328];
-	     file.read(buffer, 328328);
+	    //char *buffer = new char[328328];
+	     //file.read(buffer, 328328);
 
+	     char *buffer = new char[flength]; //HK: using actual file size for the buffer
+	     file.read(buffer, flength);
 
-	     // token test
+	     // token setup
 	     char *tokenptr;
 	     tokenptr = strtok(buffer, ",");
-	     int x = 0;
 	     char converted[200];
 
-	 while (tokenptr != NULL)
+         int x = 0;
+	 while (tokenptr != NULL) // parse token and convert data into strings
 	 {
-	       cout << tokenptr << endl;
-	     /*if(strcmp(tokenptr, " biceps") == 0) //have to use strcmp because normal == will just compare the pointer values
-         {
-             cout << "This is the header" << endl;
-         }
-         */
-         // implementing isInt function, obviously still doesnt work
-         if(isInt(tokenptr))
-            cout <<"This is data" << endl;
-            if(!isInt(tokenptr))
-            cout <<"This is a header" << endl;
 		  ss << tokenptr;
- 	 if (x >= 1)
-  	 {   ss >> converted;
-  	 	  testrecord.exercise[x] = converted;}
+         if (x >= 1)
+            {   ss >> converted;
+                fileparsed[x] = converted;
+            }
+            x++;
+         tokenptr = strtok(NULL, ","); // next token
+	 } // end while parsing loop
 
- 	  x++;
-	  tokenptr = strtok(NULL, ","); // next token
+	     } // end file while loop
 
-
-
-	 }
-	 int i = 1;
-	 while (i<10){
-	 cout<<"output: "<<testrecord.exercise[i]<<endl;
-	 i++;}
+// HK: calculation to get the number of columns
+columncount = commacount/rowcount;
 
 
+    // Read data into array
+    int i = 1;
+    for(row = 0; row < 12; row++)
+        for(col =0; col<5; col++){
+            excelrecord[row][col] = fileparsed[i];
+            i++;
+        } // end for read data for loop
+          readdata(excelrecord,columncount);
 
-	     }
-	     }
+} // end main
+
+
+
+
 
