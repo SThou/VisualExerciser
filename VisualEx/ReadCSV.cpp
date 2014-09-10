@@ -29,6 +29,28 @@ void readdata(string records[][5]){
     cout << endl;
 }
 
+//void UserStatsAdjustment(string records[][5], inputcol, inputrow) // will have to be adjusted depending on interface method
+void UserStatsAdjustment(string records[][5]){ //A user selects a specific row & col to input values
+    
+        string input;
+        int inputcol = 5; // only user can adjust user stats
+        int inputrow; // limited to row 1+
+        cout << "Enter in row ";
+        cin >> inputrow;
+    
+        if(0 == inputrow ){
+        cout<< "This row cannot be selected" <<endl;
+        cout<< "Enter in a new row" << endl;
+            cin >>inputrow;
+            } // end if
+    
+        cout<< "Enter in user stat" <<endl;
+        cin >> input;
+    
+        records[inputrow][inputcol] = input;
+    
+    
+}
 
 //record of one weight
 struct record{
@@ -98,9 +120,16 @@ int main(void)
         } // end for read data for loop
    
     // print back data
+    UserStatsAdjustment(excelrecord);
     readdata(excelrecord);
  
  
 } // end main
+
+
+
+
+
+
 
 
