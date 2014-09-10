@@ -17,7 +17,6 @@
 
 using namespace std;
 
-//double readdata(string *excelrecordptr);
 
 // functions for reading and writing to data structure
 void readdata(string records[][5]){
@@ -47,8 +46,6 @@ int main(void)
     // Begin reading data from file to parsing to data structure
     stringstream ss;
     string converted;
-    fstream filecomma("CSVStats.csv"); //didnt know how to use the same filestream again lol
-    fstream filerow("CSVStats.csv"); // " "
     fstream file("CSVStats.csv");
     
     
@@ -65,10 +62,6 @@ int main(void)
     string fileparsed[200]; // parsed data to
     string datacount;
     
-    
-    //HK: counting number of rows and columns
-    string line; //arbitrary, just need for getline
-    string token; //separate string for nested getline
 
     
     while (file)
