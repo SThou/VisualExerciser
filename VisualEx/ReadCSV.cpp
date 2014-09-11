@@ -3,7 +3,7 @@
 // Author      : ST
 // Version     :
 // Copyright   :
-// Description : Hello World in C++, Ansi-style
+// Description : This is the main file to read the start CSV file and write user input to the CSV file.
 //============================================================================
 
 #include <cstdlib> // for exit functions
@@ -61,6 +61,7 @@ void UserStatsAdjustment(string records[][5]){ //A user selects a specific row &
             
         }
     
+    
 }
 
 void writetofile(string records[][5]){
@@ -76,6 +77,8 @@ void writetofile(string records[][5]){
         outputfile<<"\n";
         }
     }
+    
+    
     outputfile.close();
     
 }
@@ -95,8 +98,6 @@ struct record{
 int main(void)
 {
     // Begin reading data from file to parsing to data structure
-    stringstream ss;
-    string converted;
     fstream file("CSVStats.csv");
     
     
@@ -111,7 +112,6 @@ int main(void)
     
     
     string fileparsed[200]; // parsed data to
-    string datacount;
     
 
     
@@ -148,11 +148,50 @@ int main(void)
             i++;
         } // end for read data for loop
    
+    
+    
+    
+
+    
     // print back data
-    UserStatsAdjustment(excelrecord);
+    UserStatsAdjustment(excelrecord); // write to initial file
+    
+    
+    
+    // write a new heading manually
+    
+    for (int i = 0; i <5 ; i++){
+        stringstream appended;
+        appended <<"Week"<<i+1;
+        string done;
+        done = appended.str();
+        excelrecord[0][i] = done;
+        
+    }
+    
+    
+    for(int x = 1; x<12; x++){ // start below header
+        for(int y = 0; y<4; y++){ // clear all other data
+            if(y == 0){
+                excelrecord[row][y] = excelrecord[row][5];} // move userstat in the fifth column to the begging of the first
+            else excelrecord[x][y] = " " ;
+            }
+            
+            
+        
+        
+        
+        
+    }
+    
+    
     readdata(excelrecord);
-    writetofile(excelrecord);
+    
+    
+    
+    writetofile(excelrecord); // write to v1 of the stats file.
   //  cout<<excelrecord[0][5];
+
     
     
 } // end main
