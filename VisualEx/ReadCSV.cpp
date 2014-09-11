@@ -18,7 +18,7 @@
 using namespace std;
 
 
-// functions for reading and writing to data structure
+// functions for reading data structure to console
 void readdata(string records[][5]){
     int row = 0, col = 0;
     for(row = 0; row < 12; row++)
@@ -33,11 +33,18 @@ void readdata(string records[][5]){
 void UserStatsAdjustment(string records[][5]){ //A user selects a specific row & col to input values
     
         string input;
-        int inputcol = 5; // only user can adjust user stats
+        int inputcol = 4; // only user can adjust user stats
         int inputrow; // limited to row 1+
+        char exit = 0; // exit value
+    
+    
+        while(exit != 'N')
+        {
+          
         cout << "Enter in row ";
         cin >> inputrow;
     
+
         if(0 == inputrow ){
         cout<< "This row cannot be selected" <<endl;
         cout<< "Enter in a new row" << endl;
@@ -48,9 +55,31 @@ void UserStatsAdjustment(string records[][5]){ //A user selects a specific row &
         cin >> input;
     
         records[inputrow][inputcol] = input;
-    
+        
+        cout<< "Enter another( Y )  or exit (N)?"<<endl;
+        cin>>exit;
+            
+        }
     
 }
+
+void writetofile(string records[][5]){
+    ofstream outputfile;
+    outputfile.open("outputfile.csv");
+    int row, col;
+    for(row = 0; row < 12; row++){
+        for(col=0; col<5; col++){
+            outputfile << records[row][col]<<",";
+        } // end for read data for loop
+       
+        if(5 == col && 0 != row ){
+        outputfile<<"\n";
+        }
+    }
+    outputfile.close();
+    
+}
+
 
 //record of one weight
 struct record{
@@ -122,8 +151,10 @@ int main(void)
     // print back data
     UserStatsAdjustment(excelrecord);
     readdata(excelrecord);
- 
- 
+    writetofile(excelrecord);
+  //  cout<<excelrecord[0][5];
+    
+    
 } // end main
 
 
