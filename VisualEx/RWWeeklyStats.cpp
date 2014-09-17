@@ -1,7 +1,7 @@
-//
+// ST-Look at this one 9/17/14
 //  RWWeeklyStats.cpp
 //  VIsualEx
-//
+// 
 //  Created by ST on 9/10/14.
 //  Copyright (c) 2014 ST. All rights reserved.
 //  Description: this will take the userstat filled out by user in ReadCSV.CPP
