@@ -12,8 +12,11 @@
 #include <fstream> // stream class to read and write from/to files
 #include <iostream> // cerr
 #include <sstream>
-
-
+#include <cstdlib> // for exit functions
+#include <cstring>
+#include <cstdio>
+#include <stdio.h>
+#include <iomanip> // string printout adjustment
 
 
 void transStats();

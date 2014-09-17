@@ -30,8 +30,8 @@ void transStats(){
     
     
     string fileparsed[200]; // parsed data to
-    
-    
+    stringstream ss;
+    string converted;
     
     while (FileIn)
     {
@@ -49,7 +49,13 @@ void transStats(){
         int x = 0;
         while (tokenptr != NULL) // parse token and convert data into strings
         {
-            fileparsed[x] = tokenptr;
+            ss << tokenptr;
+            if(x >= 1)
+            {
+                ss >> converted;
+                //fileparsed[x] = tokenptr;
+                fileparsed[x] = converted;
+            }
             x++;
             tokenptr = strtok(NULL, ","); // next token
         } // end while parsing loop
@@ -62,7 +68,7 @@ void transStats(){
     int i = 0;
     for(row = 0; row < 12; row++)
         for(col =0; col<5; col++){
-            record[row][col] = fileparsed[i];
+            record[row][col] = fileparsed[i+1]; //HK: fileparsed[i] would have included the 0(NULL) thats why it was messing up
             i++;
         } // end for read data for loop
     
@@ -79,13 +85,15 @@ void transStats(){
         record2[0][i] = done;
         
     }
-    // WHY!!!!!! is it doing this
-    uint32_t x;
-    for(x = 0; x<12; x++){ // start below header
-     //   for(int y = 0; y<5; y++){ // clear all other data
-        cout<<record[x][5]<<endl;
-           // record2[x][y] = " x " ;
-            record2[x][0] = record[x][5]; // move userstat in the fifth column to the begging of the first
+
+    //uint32_t x;
+    int rowcout; //HK: not using "x" because you declared earlier in program
+    for( rowcout= 0; rowcout<12; rowcout++){ // start below header
+        if(rowcout!=0)
+        {
+            cout<<record[rowcout][4]<<endl;
+            record2[rowcout][0] = record[rowcout][4]; // move userstat in the fifth column to the begging of the first
+        }
     }
     
         
