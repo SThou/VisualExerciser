@@ -34,11 +34,12 @@ class RWModule {
     void init(string In, string Out); // setup file names
     
     fstream openfile(); // open incoming file to be worked on, includes closing file
-    void parseCSVfile(fstream FileIn); // the parsing of a CSV file
-    void fileMod(); // modification for specific file types to be modified.
+    string parseCSVfile(fstream FileIn, string ParsedData); // the parsing of a CSV file
+    void fileMod(string ParsedData); // modification for specific file types to be modified.
                     // Default is read / write from Mainstats to RW WeeklyStats
     void writetofile(); // copy the data structure into a written CSV file
     
     
    
 };
+

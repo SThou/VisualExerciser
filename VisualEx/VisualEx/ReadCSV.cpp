@@ -5,7 +5,7 @@
 // Copyright   :
 // Description : This is the main file to read the start CSV file and write user input to the CSV file.
 //============================================================================
-
+/*
 #include <cstdlib> // for exit functions
 #include <iostream>
 #include <fstream> // stream class to both read and write from/to files
@@ -15,7 +15,8 @@
 #include <sstream>
 #include <iomanip> // string printout adjustment
 #include "RWWeeklyStats.h"
-
+ */
+#include "Read_Write_Module.h"
 using namespace std;
 
 /*
@@ -167,7 +168,13 @@ int main(void)
 */
 
 int main(){ // test .h
-    transStats();
+    RWModule Weekly;
+    Weekly.init("MainStatsFile.csv", "Test.csv");
+   // fstream n;
+    
+    fstream file;
+   // file = ;
+   // Weekly.parseCSVfile(Weekly.openfile());
 }
 
 
