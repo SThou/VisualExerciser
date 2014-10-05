@@ -1,4 +1,4 @@
-// ST: Look at this one 9/17/14
+//
 //  RWWeeklyStats.h
 //  VIsualEx
 //

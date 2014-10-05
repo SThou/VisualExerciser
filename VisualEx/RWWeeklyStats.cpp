@@ -1,7 +1,7 @@
-// ST-Look at this one 9/17/14
+//
 //  RWWeeklyStats.cpp
 //  VIsualEx
-// 
+//
 //  Created by ST on 9/10/14.
 //  Copyright (c) 2014 ST. All rights reserved.
 //  Description: this will take the userstat filled out by user in ReadCSV.CPP
@@ -29,7 +29,7 @@ void transStats(){
     int row, col; // used to traverse
 
 
-    string fileparsed[200]; // parsed data to
+    string fileparsed[300]; // parsed data to
     stringstream ss;
     string converted;
 
@@ -46,19 +46,32 @@ void transStats(){
         // token setup
         char *tokenptr;
         tokenptr = strtok(buffer, ",");
-
+       // int elemcount = 0;
         int x = 0;
+       // int z = 0;
         while (tokenptr != NULL) // parse token and convert data into strings
+      // for(int blah = 0; blah < 300; blah++)
         {
-            ss << tokenptr;
-            if(x >= 1) //HK: Used our original method of parsing token data to avoid conflicts
+            //ss << tokenptr;
+            //elemcount++;
+            if(x >= 0) //HK: Used our original method of parsing token data to avoid conflicts
             {
-            ss >> converted;
-            //fileparsed[x] = tokenptr;
-            fileparsed[x] = converted;
+            //ss >> converted;
+            fileparsed[x] = tokenptr;
+            //fileparsed[x] = converted;
             }
+            cout << "token pointer: "<< tokenptr << endl;
+            cout << "array "<< fileparsed[x] << endl;
             x++;
-            tokenptr = strtok(NULL, ","); // next token
+            /*
+            if(elemcount == 6)
+            {
+                tokenptr = strtok(NULL,"\r");
+                elemcount = 0;
+            }
+            else
+            */
+            tokenptr = strtok(NULL,",\r"); // next token
         } // end while parsing loop
 
     } // end file while loop
@@ -69,7 +82,7 @@ void transStats(){
     int i = 0;
     for(row = 0; row < 12; row++)
         for(col =0; col<5; col++){
-            record[row][col] = fileparsed[i+1]; //HK: fileparsed[i] would have included the 0(NULL) thats why it was messing up
+            record[row][col] = fileparsed[i]; //HK: fileparsed[i] would have included the 0(NULL) thats why it was messing up
             //cout << record[row][col] << endl;
             i++;
         } // end for read data for loop
