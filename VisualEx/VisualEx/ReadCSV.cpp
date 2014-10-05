@@ -5,7 +5,7 @@
 // Copyright   :
 // Description : This is the main file to read the start CSV file and write user input to the CSV file.
 //============================================================================
-/*
+
 #include <cstdlib> // for exit functions
 #include <iostream>
 #include <fstream> // stream class to both read and write from/to files
@@ -15,11 +15,11 @@
 #include <sstream>
 #include <iomanip> // string printout adjustment
 #include "RWWeeklyStats.h"
- */
-#include "Read_Write_Module.h"
-using namespace std;
 
+//#include "Read_Write_Module.h"
+using namespace std;
 /*
+
 // functions for reading data structure to console
 void readdata(string records[][5]){
     int row = 0, col = 0;
@@ -65,6 +65,7 @@ void UserStatsAdjustment(string records[][5]){ //A user selects a specific row &
     
     
 }
+ 
 
 void writetofile(string records[][5]){
     ofstream outputfile;
@@ -156,7 +157,7 @@ int main(void)
 
     
     // print back data
-    UserStatsAdjustment(excelrecord); // write to initial file
+//    UserStatsAdjustment(excelrecord); // write to initial file
     
     readdata(excelrecord);
     writetofile(excelrecord); // write to v1 of the stats file.
@@ -168,11 +169,14 @@ int main(void)
 */
 
 int main(){ // test .h
-    RWModule Weekly;
-    Weekly.init("MainStatsFile.csv", "Test.csv");
+  
+    transStats();
+    
+    //RWModule Weekly;
+    //Weekly.init("MainStatsFile.csv", "Test.csv");
    // fstream n;
     
-    fstream file;
+   // fstream file;
    // file = ;
    // Weekly.parseCSVfile(Weekly.openfile());
 }
