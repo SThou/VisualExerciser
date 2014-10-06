@@ -15,8 +15,8 @@
 #include <sstream>
 #include <iomanip> // string printout adjustment
 #include "RWWeeklyStats.h"
+#include "Read_Write_Module.h"
 
-//#include "Read_Write_Module.h"
 using namespace std;
 /*
 
@@ -170,15 +170,14 @@ int main(void)
 
 int main(){ // test .h
   
-    transStats();
+   // transStats();
     
-    //RWModule Weekly;
-    //Weekly.init("MainStatsFile.csv", "Test.csv");
-   // fstream n;
+    RWModule Weekly;
+    Weekly.init("MainStatsFile.csv", "Test.csv");
+    vector<string> Parsed = Weekly.parseCSVfile(Weekly.openfile());
     
-   // fstream file;
-   // file = ;
-   // Weekly.parseCSVfile(Weekly.openfile());
+    Weekly.writetofile(Weekly.fileMod(Parsed));
+    
 }
 
 

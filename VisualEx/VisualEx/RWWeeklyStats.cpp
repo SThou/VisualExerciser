@@ -91,7 +91,6 @@ void transStats(){
     
         
     
-    
         ofstream outputfile;
         outputfile.open("WeeklyStats.csv");
         int rows, cols;

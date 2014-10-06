@@ -13,6 +13,7 @@
 #include <fstream> // stream class to both read and write from/to files
 #include <string>
 #include <sstream>
+#include <vector>
 using namespace std;
 
 #endif /* defined(__VIsualEx__Read_Write_Module__) */
@@ -24,6 +25,7 @@ class RWModule {
     string IncomingFile; // file to be opened and read
     string OutgoingFile; // modified and written to file
     fstream OpenFileLink;
+    fstream OutputFileLink;
     
     public: // File operations
     
@@ -34,11 +36,11 @@ class RWModule {
     void init(string In, string Out); // setup file names
     
     fstream openfile(); // open incoming file to be worked on, includes closing file
-    string parseCSVfile(fstream FileIn, string ParsedData); // the parsing of a CSV file
-    void fileMod(string ParsedData); // modification for specific file types to be modified.
+    vector<string> parseCSVfile(fstream FileIn); // the parsing of a CSV file
+    vector<vector<string>> fileMod(vector<string> ParsedData); // modification for specific file types to be modified.
                     // Default is read / write from Mainstats to RW WeeklyStats
-    void writetofile(); // copy the data structure into a written CSV file
-    
+    void writetofile(vector<vector<string>> modFile ); // copy the data structure into a written CSV file
+
     
    
 };

@@ -5,7 +5,7 @@
 //  Created by ST on 9/17/14.
 //  Copyright (c) 2014 ST. All rights reserved.
 //
-/*
+
 #include "Read_Write_Module.h"
 
 RWModule::RWModule(void){ };
@@ -14,15 +14,13 @@ void RWModule::init(string In, string Out)
     IncomingFile = In;
     OutgoingFile = Out;
     
-    
-    
 }
 
 fstream RWModule::openfile()
 {
     fstream FileIn;
    
-    OpenFileLink.open(IncomingFile.c_str()); // open edited main user stat file * when IncomingFile is a pointer this turns into ->, why?
+    FileIn.open(IncomingFile.c_str()); // open edited main user stat file * when IncomingFile is a pointer this turns into ->, why?
     
     if (!FileIn)
     { cerr << " File Could Not Open\n" ;
@@ -38,11 +36,12 @@ fstream RWModule::openfile()
 }
 
 
-string RWModule::parseCSVfile(fstream FileIn, string ParsedData){
+vector<string> RWModule::parseCSVfile(fstream FileIn){
     
-    string *fileparsed = new string[200]; // parsed data to
-    stringstream ss;
-    string converted;
+    
+    // represent dataset as two dimensional array to be read into
+    vector<vector<string>> record(12, vector<string>(5)); // 12x5 record
+    vector<string> fileparsed; // parsed data to
     
     while (FileIn)
     {
@@ -50,50 +49,73 @@ string RWModule::parseCSVfile(fstream FileIn, string ParsedData){
         long flength = FileIn.tellg();
         FileIn.seekg(0, FileIn.beg);
         
-        char *buffer = new char[33333];
-        FileIn.read(buffer, 33333+1);
+        char *buffer = new char[3000];
+        FileIn.read(buffer, flength+1);
         
-        // token setup
+        
         char *tokenptr;
         tokenptr = strtok(buffer, ",");
+        
         
         int x = 0;
         while (tokenptr != NULL) // parse token and convert data into strings
         {
-            ss << tokenptr;
-            if(x >= 1)
+            
+            if(x >= 0)
             {
-                ss >> converted;
-                //fileparsed[x] = tokenptr;
-                fileparsed[x] = converted;
+                fileparsed.push_back(tokenptr);
             }
             x++;
-            tokenptr = strtok(NULL, ","); // next token
+            
+            tokenptr = strtok(NULL, ",\r"); // next token
+            
         } // end while parsing loop
         
+        
     } // end file while loop
-    cout<< "Parsed Successfully\n";
-    return fileparsed;
-}
-
-void RWModule::fileMod(string ParsedData){
+    cout<<"Parse"<<endl;
     
-    // represent dataset as two dimensional array to be read into
-    string record[12][5]; // 12x5 record *array init values has to be actual numbers rather than
-                         //variables for a string type.
-    
-    // Read data into array
-    int i = 0;
+    /*
     for(int row = 0; row < 12; row++)
         for(int col =0; col<5; col++){
-            record[row][col] = fileparsed[i+1]; //HK: fileparsed[i] would have included the 0(NULL) thats why it was messing up
+            cout<<record2[row][col]<<"\n";
+        } // end for read data for loop
+    */
+    
+    
+    
+return fileparsed;
+
+}
+
+
+vector<vector<string>> RWModule::fileMod(vector<string> ParsedData){
+  
+    vector<vector<string>> record(12, vector<string>(5));
+    // Read data into array
+    
+    for(int x =0 ; x < 300; x++)
+    {
+        cout << ParsedData[x] << endl;;
+    }
+    
+    unsigned int i = 0;
+    int row, col; // used to traverse
+    for(row = 0; row < 12; row++)
+        for(col =0; col<5; col++){
+            record[row][col] = ParsedData[i];
             i++;
         } // end for read data for loop
     
+    /*
+    for(int row = 0; row < 12; row++)
+        for(int col =0; col<5; col++){
+            cout<< record[row][col]<<"\n";
+        } // end for read data for loop
+    */
     
     // write a new heading manually
-    
-    string record2[12][5]; // 12x5 record to copy original file into and write to
+    vector<vector<string>> record2(12, vector<string>(5)); // 12x5 record to copy original file into and write to
     
     for (int i = 0; i <5 ; i++){
         stringstream appended;
@@ -104,17 +126,44 @@ void RWModule::fileMod(string ParsedData){
         
     }
     
-    //uint32_t x;
-    int rowcout; //HK: not using "x" because you declared earlier in program
-    for( rowcout= 0; rowcout<12; rowcout++){ // start below header
+    
+    for( int rowcout= 0; rowcout<12; rowcout++){ // start below header
         if(rowcout!=0)
         {
-            cout<<record[rowcout][4]<<endl;
             record2[rowcout][0] = record[rowcout][4]; // move userstat in the fifth column to the begging of the first
         }
     }
+    cout<<"filemod"<<endl;
+   
     
 
+
+    
+     return record2;
     
 }
- */
+
+
+void RWModule::writetofile(vector<vector<string>> modFile){
+
+ofstream outputfile;
+outputfile.open(OutgoingFile.c_str());
+int rows, cols;
+for(rows = 0; rows< 12; rows++){
+    for(cols=0; cols<5; cols++){
+        outputfile << modFile[rows][cols]<<",";
+        if(rows == 0 && cols ==4){
+            outputfile<<"\n";
+        }
+        
+        } // end for read data for loop
+        
+        if(5 == cols && 0 != rows ){
+            outputfile<<"\n";
+        }
+        }
+        
+    cout<<"Close"<<endl;
+        outputfile.close();
+
+}
