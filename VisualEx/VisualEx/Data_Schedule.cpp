@@ -67,3 +67,57 @@ vector<vector<string>> stats_Schedule::fileMod(vector<string> ParsedData){
     
     
 }
+
+
+
+void stats_Schedule::userInputStartDate(string startdate){ // "05/03/1988"
+    
+    int a = 0; // counter for inner loop to increment startdate
+    
+    int date[17]; // array to hold date
+    for(int i = 0; i<17; i++){
+        
+        date[i] = startdate+a;
+        date[i+1] = startdate+a;
+        date[i+2] = startdate+a;
+        
+        i = i*3;
+        b++;
+        
+        
+    } // end for loop
+    
+    
+ // take the date and figure out the day of the week
+    
+    int dayofweek[17]; // array to hold day of week
+    for(int b = 0; b<17; b++){
+    
+        dayofweek[i] = convertdayofweek(date[i]); // find a function that can do the convertday of week
+        
+        
+    }
+    
+    // load the exercises
+    
+    string exercises[17];
+    
+    exercises[0] = "Squat"; // come back to fill out the exercises in this manner
+    
+    
+}
+
+
+
+
+void stats_Schedule::userinputInfo(int location,string dataset[]){
+    string entry; // all entrys default to strings and will be converted when necessary
+    cout<<"what do you want to enter?"<<endl;
+    
+    cin>>entry;
+    
+    dataset[location] = entry;
+    
+    
+    
+}

@@ -27,13 +27,21 @@ public: // File manipulation for specific file
     ~stats_Schedule() {}; // deconstructor
     
     vector<vector<string>> fileMod(vector<string> ParsedData); // modification for specific file types to be modified
-    void writetofile(vector<vector<string>> modFile); // copy parsed data to output CSV file
     
     
     // To do
     // Function for Date, DayOfWeek, to be populated
+    void userInputStartDate(string startdate);
+    
+    
     // Function to align a pre initialized vector / array with exerises to populate
     // Function for user to input set/rep/weight/ completed
+    void userinputInfo(int location, string dataset[]); // preemptive for apps, takes location of the data structure passed by dataset (set, rep, weight, completed) to be adjusted.
+    
+    void writetofile(vector<vector<string>> modFile); // copy parsed data to output CSV file
+    
+    
+
     
 
 };
