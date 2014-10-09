@@ -8,7 +8,7 @@
 
 #include "Data_Schedule.h"
 
-
+/*
 
 vector<vector<string>> stats_Schedule::fileMod(vector<string> ParsedData){
     vector<vector<string>> record(18, vector<string>(7));
@@ -121,3 +121,4 @@ void stats_Schedule::userinputInfo(int location,string dataset[]){
     
     
 }
+*/

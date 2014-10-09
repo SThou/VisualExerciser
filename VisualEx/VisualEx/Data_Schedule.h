@@ -6,18 +6,14 @@
 //  Copyright (c) 2014 ST. All rights reserved.
 //
 
-#ifndef __VIsualEx__Data_Schedule__
-#define __VIsualEx__Data_Schedule__
+#ifndef DATA_SCHEDULE_H
+#define DATA_SCHEDULE_H
 
 #include <stdio.h>
 #include "Read_Write_Module.h"
 
-#endif /* defined(__VIsualEx__Data_Schedule__) */
 
-//inherits the RWWeeklyStats.h class
-
-
-class stats_Schedule: public RWModule
+class stats_Schedule : public RWModule
 {
     
 
@@ -45,3 +41,6 @@ public: // File manipulation for specific file
     
 
 };
+
+#endif /* defined(__VIsualEx__Data_Schedule__) */
+//inherits the RWWeeklyStats.h class

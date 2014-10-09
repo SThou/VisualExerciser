@@ -75,14 +75,6 @@ vector<string> RWModule::parseCSVfile(fstream FileIn){
     } // end file while loop
     cout<<"Parse"<<endl;
     
-    /*
-    for(int row = 0; row < 12; row++)
-        for(int col =0; col<5; col++){
-            cout<<record2[row][col]<<"\n";
-        } // end for read data for loop
-    */
-    
-    
     
 return fileparsed;
 

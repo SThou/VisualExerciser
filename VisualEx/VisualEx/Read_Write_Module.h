@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 ST. All rights reserved.
 //  Description, this is the base class for all read / write operations
 
-#ifndef __VIsualEx__Read_Write_Module__
-#define __VIsualEx__Read_Write_Module__
+#ifndef READ_WRITE_MODULE_H
+#define READ_WRITE_MODULE_H
 
 #include <iostream>
 #include <fstream> // stream class to both read and write from/to files
@@ -16,7 +16,7 @@
 #include <vector>
 using namespace std;
 
-#endif /* defined(__VIsualEx__Read_Write_Module__) */
+
 
 
 class RWModule {
@@ -44,4 +44,4 @@ class RWModule {
     
    
 };
-
+#endif /* defined(__VIsualEx__Read_Write_Module__) */
