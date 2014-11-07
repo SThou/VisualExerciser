@@ -13,10 +13,17 @@
 using namespace std;
 
 
+
+
 typedef struct month{
 int name;
 int maxday;
-} month;
+}month;
+
+typedef struct node{
+month data; //data type is going to be struct month
+node* next;
+}node;
 
 void populatemonths()
 {
@@ -70,10 +77,61 @@ Nov.maxday = 30;
 Dec.name = 12;
 Dec.maxday = 31;
 
+
+//HK: code for month linked list
+node* current; // for traversal and linking
+node* n;
+node* header; // leave as header for the linkedlist
+n = new node;
+n->data = Jan;
+current = n;
+header = n; // leave as header
+
+n = new node;
+n->data = Feb;
+current->next = n;
+
+n = new node;
+n->data = Mar;
+current->next = n;
+
+n = new node;
+n->data = Apr;
+current->next = n;
+
+n = new node;
+n->data = May;
+current->next = n;
+
+n = new node;
+n->data = Jun;
+current->next = n;
+
+n = new node;
+n->data = Jul;
+current->next = n;
+
+n = new node;
+n->data = Aug;
+current->next = n;
+
+n = new node;
+n->data = Sep;
+current->next = n;
+
+n = new node;
+n->data = Oct;
+current->next = n;
+
+n = new node;
+n->data = Nov;
+current->next = n;
+
+n = new node;
+n->data = Dec;
+current->next = n;
+n->next = NULL; //end of the list
 }
-
-
-
 
 class date{
 
@@ -86,6 +144,7 @@ typedef struct Date{
 public:
 Date currentDate; // create an instance of the struct
 void getday();
+void getmonth();
 void getyear();
 void displaydateline();
 };

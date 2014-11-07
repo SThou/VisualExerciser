@@ -7,10 +7,11 @@
 //============================================================================
 
 #include <iostream>
+#include "Date.h"
 using namespace std;
 
 
-
+/*
 typedef struct Date{
 	int month; // (1-12)
 	int day;  //
@@ -18,35 +19,35 @@ typedef struct Date{
 } date; // why is struct labeled and called with this and not Date
 
 date Date; // create an instance of the struct
-
-void getmonth(){
-	cout<<"Enter in the monthx"<<endl;
-	cin>>Date.month;
+*/
+void date::getmonth(){
+	cout<<"Enter in the month"<<endl;
+	cin>>currentDate.month;
 }
 
 
-void getday(){
+void date::getday(){
 	cout<<"Enter in the day"<<endl;
-	cin>>Date.day;
+	cin>>currentDate.day;
 }
 
 
-void getyear(){
+void date::getyear(){
 	cout<<"Enter in the year"<<endl;
-	cin>>Date.year;
+	cin>>currentDate.year;
 }
 
 
-void displaydateline(){
-	cout<<Date.month<<"/"<<Date.day<<"/"<<Date.year<<endl;
+void date::displaydateline(){
+	cout<<currentDate.month<<"/"<<currentDate.day<<"/"<<currentDate.year<<endl;
 }
 
+/*
 
-
-void increment(int days, int month, int year){ // increment the day (by this amount( day) )
+void date:: increment(int days, int month, int year){ // increment the day (by this amount( day) )
 
 		// match the month to an existing month value in database
-
+/*
 		for loop:  // handle the days and month
 			if ( passed month = month in list)
 				if (current day < max day in month list )
@@ -65,9 +66,6 @@ void increment(int days, int month, int year){ // increment the day (by this amo
 
 
 
-
-
-
-
 }
+*/
 
