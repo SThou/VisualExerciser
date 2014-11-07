@@ -18,9 +18,6 @@ using namespace std;
 
 
 
-
-
-
 class date{
 
 typedef struct Date{
@@ -29,31 +26,12 @@ typedef struct Date{
 	int year;
 } Date;
     
-typedef struct month{
-    int name;
-    int maxday;
-    } month;
+
 
     
-typedef struct node{
-month data; //data type is going to be struct month
-struct node* next;
-    }node;
-    
+
 public:
 Date currentDate; // create an instance of the struct
-    month *Jan;
-    month Feb;
-    month Mar;
-    month Apr;
-    month May;
-    month Jun;
-    month Jul;
-    month Aug;
-    month Sep;
-    month Oct;
-    month Nov;
-    month Dec;
 void getday();
 void getmonth();
 void getyear();
