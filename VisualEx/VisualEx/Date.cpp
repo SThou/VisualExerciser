@@ -15,7 +15,6 @@ typedef struct Date{
 	int month; // (1-12)
 	int day;  //
 	int year;
-	int *test;
 } date; // why is struct labeled and called with this and not Date
 
 date Date; // create an instance of the struct
@@ -39,15 +38,36 @@ void getyear(){
 
 
 void displaydateline(){
-	cout<<Date.month<<"/"<<Date.day<<"/"<<Date.year<<"/"<<endl;
+	cout<<Date.month<<"/"<<Date.day<<"/"<<Date.year<<endl;
 }
 
-int main(){
 
-	getmonth();
-	getday();
-	getyear();
-	displaydateline();
+
+void increment(int days, int month, int year){ // increment the day (by this amount( day) )
+
+		// match the month to an existing month value in database
+
+		for loop:  // handle the days and month
+			if ( passed month = month in list)
+				if (current day < max day in month list )
+					increment day
+				if (current day = 31 and month = december)
+					increment year
+				if (current day = max day in month list)
+					increment month
+				if (current day = 29 && month == feb )
+					increment month
+					// catch the leap year
+				if (current day < max day in feb (28) && month is feb && year is multiple of 4)
+					increment day // feb 29
+
+
+
+
+
+
+
+
 
 }
 
