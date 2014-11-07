@@ -20,6 +20,108 @@ typedef struct Date{
 
 date Date; // create an instance of the struct
 */
+
+
+
+void populatemonths(){
+
+    
+    
+    Jan->name = 1;
+    Jan->maxday = 31;
+    
+    Feb.name = 2;
+    Feb.maxday = 28;
+    
+    Mar.name = 3;
+    Mar.maxday = 31;
+    
+    Apr.name = 4;
+    Apr.maxday = 30;
+    
+    May.name = 5;
+    May.maxday = 31;
+    
+    Jun.name = 6;
+    Jun.maxday = 30;
+    
+    Jul.name = 7;
+    Jul.maxday = 31;
+    
+    Aug.name = 8;
+    Aug.maxday = 31;
+    
+    Sep.name = 9;
+    Sep.maxday = 30;
+    
+    Oct.name = 10;
+    Oct.maxday = 31;
+    
+    Nov.name = 11;
+    Nov.maxday = 30;
+    
+    Dec.name = 12;
+    Dec.maxday = 31;
+    
+    
+    //HK: code for month linked list
+    node* current; // for traversal and linking
+    node* n;
+    node* header; // leave as header for the linkedlist
+    n = new node;
+    n->data = Jan;
+    current = n;
+    header = n; // leave as header
+    
+    n = new node;
+    n->data = Feb;
+    current->next = n;
+    
+    n = new node;
+    n->data = Mar;
+    current->next = n;
+    
+    n = new node;
+    n->data = Apr;
+    current->next = n;
+    
+    n = new node;
+    n->data = May;
+    current->next = n;
+    
+    n = new node;
+    n->data = Jun;
+    current->next = n;
+    
+    n = new node;
+    n->data = Jul;
+    current->next = n;
+    
+    n = new node;
+    n->data = Aug;
+    current->next = n;
+    
+    n = new node;
+    n->data = Sep;
+    current->next = n;
+    
+    n = new node;
+    n->data = Oct;
+    current->next = n;
+    
+    n = new node;
+    n->data = Nov;
+    current->next = n;
+    
+    n = new node;
+    n->data = Dec;
+    current->next = n;
+    n->next = NULL; //end of the list
+
+
+}
+
+
 void date::getmonth(){
 	cout<<"Enter in the month"<<endl;
 	cin>>currentDate.month;
@@ -42,13 +144,22 @@ void date::displaydateline(){
 	cout<<currentDate.month<<"/"<<currentDate.day<<"/"<<currentDate.year<<endl;
 }
 
-/*
 
-void date:: increment(int days, int month, int year){ // increment the day (by this amount( day) )
+
+void date::increment(){ // increment the day (by this amount( day) )
 
 		// match the month to an existing month value in database
-/*
-		for loop:  // handle the days and month
+    bool done;
+    
+    while(!done){ // handle the days and month
+        
+        for (int i = 0; i<12; i++){
+            if (currentDate.month == current->data)
+            
+    
+    /*
+    
+    for loop:  // handle the days and month
 			if ( passed month = month in list)
 				if (current day < max day in month list )
 					increment day
@@ -62,10 +173,10 @@ void date:: increment(int days, int month, int year){ // increment the day (by t
 				if (current day < max day in feb (28) && month is feb && year is multiple of 4)
 					increment day // feb 29
 
-
+*/
 
 
 
 }
-*/
+
 
