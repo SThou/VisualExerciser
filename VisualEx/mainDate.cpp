@@ -14,8 +14,15 @@ using namespace std;
 
 int main()
 {
-date currentmonth;
-currentmonth.setList();
-currentmonth.getmonth();
-currentmonth.increment();
+date currentdate;
+node* header;
+currentdate.setList(header);
+currentdate.getmonth();
+currentdate.getyear();
+currentdate.getday(header);
+cout << "current date is: ";
+currentdate.printDate();
+currentdate.increment(header);
+cout <<"date after incrementing: ";
+currentdate.printDate();
 }

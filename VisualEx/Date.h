@@ -33,13 +33,14 @@ class date{
     
 public:
 Date currentDate; // create an instance of the struct
-void setList();
-void getday();
+void setList(node* &header);
+void getday(node* &header);
 void getmonth();
 void getyear();
-void increment();
+void increment(node* &header);
 void displaydateline();
 void populatemonths();
+void printDate();
     
 };
 
